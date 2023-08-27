@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 export interface RouteProps {
-  component?: any; // 路由组件
+  component?: React.LazyExoticComponent<React.FC>; // 路由组件
   requiresAuth?: boolean; // 是否需要登录才能访问
   requiresAdmin?: boolean; // 是否需要管理员权限才能访问
   isMenu: boolean;
@@ -13,13 +13,13 @@ export interface RouteProps {
 const routes: RouteProps[] = [
   {
     path: "/",
-    component:import(`../pages/index/index`) ,
+    component: lazy(() => import('@/pages/index/index')),
     isMenu: false,
     requiresAuth: true,
   },
   {
     path: "/login",
-    component: import(`../pages/login`),
+    component: lazy(() => import('@/pages/login/index')),
     isMenu: false,
     requiresAuth: true,
     title: "登录",

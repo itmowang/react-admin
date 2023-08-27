@@ -12,7 +12,7 @@ const RouterView: React.FC = () => {
               <Route
                 key={route.path}
                 path={route.path}
-                element={<div>{route.component && <route.component />}</div>}
+                element={route.component && <route.component />}
               />
             );
           })}
