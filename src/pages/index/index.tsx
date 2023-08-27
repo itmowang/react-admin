@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import "./index.less";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const Apps: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -20,7 +20,7 @@ const Apps: React.FC = () => {
     <Layout className="index-Layout">
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
-          <h1>React Admin</h1>
+          {!collapsed ?<h1>React Admin</h1>:<h1>R</h1> } 
         </div>
         <Menu
           theme="dark"

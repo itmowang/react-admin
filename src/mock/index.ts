@@ -10,7 +10,15 @@ export const loginMock = (data: any) => {
           Mock.mock({
             code: 200,
             message: "登录成功",
-            data: {},
+            data: {
+              token: "admin-token",
+              userInfo: {
+                username: "admin",
+                avatar: "https://avatars.githubusercontent.com/u/20942571?v=4",
+                email: "123@qq.com"
+              }
+                
+            },
           })
         );
       }, 1000); // 模拟延迟1秒钟
@@ -22,7 +30,11 @@ export const loginMock = (data: any) => {
           Mock.mock({
             code: 200,
             message: "登录成功",
-            data: {},
+            data: {
+              username: "user",
+              avatar: "https://avatars.githubusercontent.com/u/20942571?v=4",
+              email: "123@qq.com"
+            },
           })
         );
       }, 1000); // 模拟延迟1秒钟
@@ -41,3 +53,49 @@ export const loginMock = (data: any) => {
     });
   }
 };
+
+
+// 模拟返回菜单列表接口并带上权限
+export const getMenuMock = (data:any) => {
+  Mock.mock('/api/menu', 'post', {
+    code: 200,
+    message: '获取菜单列表成功',
+    data: {
+      menuList: [
+        {
+          id: 1,
+          name: '菜单1',
+          permission: 'admin,user' // 根据实际情况修改
+        },
+        {
+          id: 2,
+          name: '菜单2',
+          permission: 'admin,user' // 根据实际情况修改
+        }, 
+      ]
+    }
+  });
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(Mock.mock({
+        code: 200,
+        message: '获取菜单列表成功',
+        data: {
+          menuList: [
+            {
+              id: 1,
+              name: '菜单1',
+              permission: 'admin,user' // 根据实际情况修改
+            },
+            {
+              id: 2,
+              name: '菜单2',
+              permission: 'admin,user' // 根据实际情况修改
+            }, 
+          ]
+        }
+      }));
+    }, 1000); // 模拟延迟1秒钟
+  });
+}

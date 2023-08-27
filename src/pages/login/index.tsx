@@ -3,18 +3,22 @@ import "./index.less";
 import { Button, Card, Col, Form, Input, Row,message } from "antd";
 import { login } from "@/api/api";
 import { useMutation } from "@tanstack/react-query";
+import { useSelector,useDispatch } from "react-redux";
 
 const Login: React.FC = () => {
+  // redux
+  const dispatch = useDispatch();
+  // form
   const [form] = Form.useForm();
   // 登录
   const { mutate, isLoading: loginLoading } = useMutation(login, {
     onSuccess: (data: any) => {
       if (data?.code === 200) {
         message.success("登录成功");
-        console.log(data);
+        // 获取菜单
+        dispatch.user.fetchMenu()  
       } else {
         message.error(data?.message);
-        console.log(data);
       }
     },
   });
