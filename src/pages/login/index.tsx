@@ -15,7 +15,6 @@ const Login: React.FC = () => {
     onSuccess: (data: any) => {
       if (data?.code === 200) {
         message.success("登录成功");
-        // 获取菜单
         dispatch.user.fetchMenu()  
       } else {
         message.error(data?.message);

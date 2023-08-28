@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.2.5",
     "@rematch/core": "^2.2.0",
+    "@rematch/persist": "^2.1.2",
     "@tanstack/react-query": "^4.33.0",
     "antd": "^5.8.4",
     "axios": "^1.4.0",
@@ -23,7 +24,6 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.15.0",
-    "redux-persist": "^6.0.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9"
   },

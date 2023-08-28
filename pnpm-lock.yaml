@@ -7,6 +7,9 @@ dependencies:
   '@rematch/core':
     specifier: ^2.2.0
     version: 2.2.0(redux@4.2.1)
+  '@rematch/persist':
+    specifier: ^2.1.2
+    version: 2.1.2(@rematch/core@2.2.0)(react@18.2.0)(redux@4.2.1)
   '@tanstack/react-query':
     specifier: ^4.33.0
     version: 4.33.0(react-dom@18.2.0)(react@18.2.0)
@@ -40,9 +43,6 @@ dependencies:
   react-router-dom:
     specifier: ^6.15.0
     version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
-  redux-persist:
-    specifier: ^6.0.0
-    version: 6.0.0(react@18.2.0)(redux@4.2.1)
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
@@ -423,6 +423,19 @@ packages:
       redux: '>=4'
     dependencies:
       redux: 4.2.1
+    dev: false
+
+  /@rematch/persist@2.1.2(@rematch/core@2.2.0)(react@18.2.0)(redux@4.2.1):
+    resolution: {integrity: sha512-QiXo3pKCZFv8WW6zeMtBXGOXXp+BuUnoYNpr6p8Euah6gWThoWtbDS8NmlbKj3igmG9TtowuBVSxJCAgFk45zQ==}
+    peerDependencies:
+      '@rematch/core': '>=2'
+      redux: '>=4'
+    dependencies:
+      '@rematch/core': 2.2.0(redux@4.2.1)
+      redux: 4.2.1
+      redux-persist: 6.0.0(react@18.2.0)(redux@4.2.1)
+    transitivePeerDependencies:
+      - react
     dev: false
 
   /@remix-run/router@1.8.0:

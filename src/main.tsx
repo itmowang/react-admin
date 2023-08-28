@@ -5,6 +5,8 @@ import { ConfigProvider } from "antd";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import store from "@/store/index";
 import { Provider } from "react-redux";
+// mock
+import '@/mock/index' 
 // 全局css
 import "./styles/style.less";
 

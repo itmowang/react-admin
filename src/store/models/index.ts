@@ -1,5 +1,6 @@
 
 import { menuMock } from '@/api/api';
+import {message} from 'antd'
 
 
 export const user = {
@@ -18,11 +19,13 @@ export const user = {
     async fetchMenu(){
       try{
         const res  =  await menuMock({}) as any;
+        console.log(res);
+        
         if(res.code===200){
           dispatch.user.setUser(res.data.menuList)
         }
       }catch{
-        console.log('error,menuMock');
+        message.error("error,menuMock")
       }
     }
   })

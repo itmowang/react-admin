@@ -16,7 +16,7 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response: any) => {
     // 在响应成功返回之前做一些处理
-    return response;
+    return response.data;
   },
   (error) => {
     if(error.response.status === 400){
