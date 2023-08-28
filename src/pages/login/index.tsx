@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import "./index.less";
-import { Button, Card, Col, Form, Input, Row,message } from "antd";
+import { Button, Card, Col, Form, Input, Row, message } from "antd";
 import { login } from "@/api/api";
 import { useMutation } from "@tanstack/react-query";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   // 路由
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // redux
   const dispatch = useDispatch();
+  const userStore = useSelector((state: any) => state.user);
+
   // form
   const [form] = Form.useForm();
   // 登录
@@ -18,21 +20,32 @@ const Login: React.FC = () => {
     onSuccess: (data: any) => {
       if (data?.code === 200) {
         message.success("登录成功");
-        dispatch.user.fetchMenu()
-        // 跳转去首页
-        navigate('/dashboard')
+        // 保存token
+        dispatch({
+          type: "user/setToken",
+          payload: data?.token,
+        });
+        // 获取菜单
+        dispatch.user.fetchMenu();
+        // 保存用户信息
+        dispatch({
+          type: "user/setUser",
+          payload: data?.userInfo,
+        });
+        // 跳转去仪表盘
+        navigate("/dashboard");
       } else {
         message.error(data?.message);
       }
-    }
+    },
   });
 
   // 如果已经登录就去仪表盘
-  useEffect(()=>{
-
-  },[])
-
-
+  useEffect(() => {
+    if (userStore.isLogin) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   const Login = async () => {
     try {

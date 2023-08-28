@@ -1,7 +1,32 @@
-.index-Layout{
-    height: 100vh;
-    .logo{
-        color: #fff;
-        text-align: center;
+.index-Layout {
+  height: 100vh;
+  .logo {
+    color: #fff;
+    text-align: center;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+    .header-r-user {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      cursor: pointer;
+      .pic{
+        display: flex;
+        align-items: center;
+        border-radius: 50%;
+        img{
+            width:30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        .userName{
+            margin-left: 10px;
+            color: #5e5454;
+        }
+      }
     }
+  }
 }

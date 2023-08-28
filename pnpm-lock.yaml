@@ -25,6 +25,9 @@ dependencies:
   mockjs:
     specifier: ^1.1.0
     version: 1.1.0
+  nprogress:
+    specifier: ^0.2.0
+    version: 0.2.0
   path:
     specifier: ^0.12.7
     version: 0.12.7
@@ -43,6 +46,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.15.0
     version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
+  redux-persist:
+    specifier: ^6.0.0
+    version: 6.0.0(react@18.2.0)(redux@4.2.1)
   typescript:
     specifier: ^5.2.2
     version: 5.2.2
@@ -971,6 +977,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     optional: true
+
+  /nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
 
   /parse-node-version@1.0.1:
     resolution: {integrity: sha512-3YHlOa/JgH6Mnpr05jP9eDG254US9ek25LyIxZlDItp2iJtwyaXQb57lBYLdT3MowkUFYEV2XXNAYIPlESvJlA==}

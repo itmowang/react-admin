@@ -1,4 +1,4 @@
-import { Button, Layout, Menu, theme } from "antd";
+import { Button, Dropdown, Layout, Menu, theme } from "antd";
 import React, { useState } from "react";
 import {
   MenuFoldOutlined,
@@ -7,6 +7,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
+import { useSelector } from 'react-redux'
 import "./index.less";
 
 const { Header, Content, Sider } = Layout;
@@ -16,11 +17,17 @@ const Apps: React.FC = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const items = [{ label: "退出登录", key: "2" }];
+
+  // redux 存储的用户信息
+  const userStore = useSelector((state: any) => state.user); 
+  
   return (
     <Layout className="index-Layout">
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
-          {!collapsed ?<h1>React Admin</h1>:<h1>R</h1> } 
+          {!collapsed ? <h1>React Admin</h1> : <h1>R</h1>}
         </div>
         <Menu
           theme="dark"
@@ -46,7 +53,10 @@ const Apps: React.FC = () => {
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
+        <Header
+          className="header"
+          style={{ padding: 0, background: colorBgContainer }}
+        >
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -57,6 +67,16 @@ const Apps: React.FC = () => {
               height: 64,
             }}
           />
+          <div className="header-r-user">
+            <Dropdown menu={{ items }} placement="bottom" arrow>
+              <div className="pic">
+                <img
+                  src={`https://avatars.githubusercontent.com/u/137391282?v=4`}
+                />
+                <span className="userName"> {userStore?.user?.name} </span>
+              </div>
+            </Dropdown>
+          </div>
         </Header>
         <Content
           style={{
