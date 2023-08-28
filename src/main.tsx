@@ -7,9 +7,9 @@ import store from "@/store/index";
 import { Provider } from "react-redux";
 import { getPersistor } from "@rematch/persist";
 import { PersistGate } from "redux-persist/lib/integration/react";
- 
+
 // mock
-import '@/mock/index' 
+import "@/mock/index";
 // 全局css
 import "./styles/style.less";
 
@@ -30,7 +30,7 @@ const queryClient = new QueryClient({
 root.render(
   <div className="main">
     <Provider store={store}>
-    <PersistGate persistor={persistor}>
+      <PersistGate persistor={persistor}>
         <QueryClientProvider client={queryClient}>
           <ConfigProvider
             theme={{
@@ -43,7 +43,7 @@ root.render(
             <RouteView></RouteView>
           </ConfigProvider>
         </QueryClientProvider>
-        </PersistGate>
+      </PersistGate>
     </Provider>
   </div>
 );

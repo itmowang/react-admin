@@ -2,13 +2,11 @@
 import { menuMock } from '@/api/api';
 import {message} from 'antd'
 
-
 export const user = {
   state: {
     user: null,
     loading: false,
     menuList: [],
-    aa:123132132
   },
   reducers:{
     setUser(state: any,payload: any){
@@ -18,14 +16,12 @@ export const user = {
   effects:(dispatch: any)=>({
     async fetchMenu(){
       try{
-        const res  =  await menuMock({}) as any;
-        console.log(res);
-        
+        const res =  await menuMock({}) as any;
         if(res.code===200){
-          dispatch.user.setUser(res.data.menuList)
+          dispatch.user.setUser(res.data)
         }
       }catch{
-        message.error("error,menuMock")
+        message.error("error , menuMock")
       }
     }
   })
