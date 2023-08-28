@@ -12,7 +12,7 @@ export interface RouteProps {
 
 const routes: RouteProps[] = [
   {
-    path: "/",
+    path: "/dashboard",
     component: lazy(() => import('@/pages/index/index')),
     isMenu: false,
     requiresAuth: true,

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.less";
 import { Button, Card, Col, Form, Input, Row,message } from "antd";
 import { login } from "@/api/api";
 import { useMutation } from "@tanstack/react-query";
 import { useSelector,useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  // 路由
+  const navigate = useNavigate()
   // redux
   const dispatch = useDispatch();
   // form
@@ -16,11 +19,20 @@ const Login: React.FC = () => {
       if (data?.code === 200) {
         message.success("登录成功");
         dispatch.user.fetchMenu()
+        // 跳转去首页
+        navigate('/dashboard')
       } else {
         message.error(data?.message);
       }
-    },
+    }
   });
+
+  // 如果已经登录就去仪表盘
+  useEffect(()=>{
+
+  },[])
+
+
 
   const Login = async () => {
     try {
@@ -63,7 +75,7 @@ const Login: React.FC = () => {
                     },
                   ]}
                 >
-                  <Input />
+                  <Input.Password />
                 </Form.Item>
                 <Form.Item>
                   <Button

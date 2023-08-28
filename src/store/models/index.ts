@@ -6,11 +6,12 @@ export const user = {
   state: {
     user: null,
     loading: false,
+    isLogin:false,
     menuList: [],
   },
   reducers:{
     setUser(state: any,payload: any){
-      return {...state,user:payload}
+      return {...state,user:payload,isLogin:true}
     }
   },
   effects:(dispatch: any)=>({
