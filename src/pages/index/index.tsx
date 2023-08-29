@@ -31,33 +31,13 @@ const Apps: React.FC = () => {
   }
 
   // 菜单列表
-  const [menuRoute, setMenuRoute] = useState<MenuItems[]>([
-    {
-      key: "1",
-      icon: <UserOutlined />,
-      label: "首页",
-      children: [
-        {
-          key: "1",
-          icon: <UserOutlined />,
-          label: "123123",
-        },
-      ],
-    },
-  ]);
+  const [menuRoute, setMenuRoute] = useState<MenuItems[]>([]);
+  
   // 首次加载处理
   useEffect(() => {
-    setMenuRoute(
-      menuList.map((item: any, index: number) => {
-        return {
-          key: item?.id,
-          icon: <UserOutlined />,
-          label: item?.name,
-          children:item.children
-        };
-      })
-    );
+    setMenuRoute(menuList);
   }, []);
+  
   // 用户下拉菜单
   const items = [{ label: "退出登录", key: "2" }];
 

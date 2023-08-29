@@ -8,6 +8,7 @@ export const user = {
     loading: false,
     isLogin:false,
     menuList: [],
+    menuAll:[]
   },
   
   reducers:{
@@ -19,15 +20,18 @@ export const user = {
     },
     setToken(state: any,payload: any){
       return {...state,token:payload}
-    }
-    
+    },
+    setMenuAll(state: any,payload: any){
+      return {...state,menuAll:payload}
+    },
   },
   effects:(dispatch: any)=>({
     async fetchMenu(){
       try{
         const res =  await menuMock({}) as any;
         if(res.code===200){
-          dispatch.user.setMenu(res.data)
+          dispatch.user.setMenu(res.data.menuList)
+          dispatch.user.setMenuAll(res.data.menuAll)
         }
       }catch{
         message.error("error , menuMock")
