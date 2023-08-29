@@ -11,6 +11,9 @@
 pnpm install
 
 # 启动
-pnpm dev
+pnpm dev  
+
+# 打包
+pnpm build
 
 ```
