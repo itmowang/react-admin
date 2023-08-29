@@ -3,7 +3,6 @@ import routes from "./routes";
 import { BrowserRouter as Router, Route, Routes,Navigate } from "react-router-dom";
 
 const RouterView: React.FC = () => {
-  // const navigate = useNavigate()
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>

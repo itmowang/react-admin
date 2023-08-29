@@ -9,6 +9,7 @@ export const user = {
     isLogin:false,
     menuList: [],
   },
+  
   reducers:{
     setUser(state: any,payload: any){
       return {...state,user:payload,isLogin:true}

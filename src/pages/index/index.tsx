@@ -1,5 +1,5 @@
 import { Button, Dropdown, Layout, Menu, theme } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -7,22 +7,60 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import "./index.less";
 
 const { Header, Content, Sider } = Layout;
 
 const Apps: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+  // redux 存储的用户信息
+  const userStore = useSelector((state: any) => state);
+  const { user, menuList } = userStore?.user;
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  interface MenuItems {
+    label: React.ReactNode;
+    key: React.Key;
+    icon?: React.ReactNode;
+    children?: MenuItems[];
+    type?: "group";
+  }
+
+  // 菜单列表
+  const [menuRoute, setMenuRoute] = useState<MenuItems[]>([
+    {
+      key: "1",
+      icon: <UserOutlined />,
+      label: "首页",
+      children: [
+        {
+          key: "1",
+          icon: <UserOutlined />,
+          label: "123123",
+        },
+      ],
+    },
+  ]);
+  // 首次加载处理
+  useEffect(() => {
+    setMenuRoute(
+      menuList.map((item: any, index: number) => {
+        return {
+          key: item?.id,
+          icon: <UserOutlined />,
+          label: item?.name,
+          children:item.children
+        };
+      })
+    );
+  }, []);
+  // 用户下拉菜单
   const items = [{ label: "退出登录", key: "2" }];
 
-  // redux 存储的用户信息
-  const userStore = useSelector((state: any) => state.user); 
-  
   return (
     <Layout className="index-Layout">
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -33,23 +71,7 @@ const Apps: React.FC = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
+          items={menuRoute}
         />
       </Sider>
       <Layout>
@@ -70,10 +92,8 @@ const Apps: React.FC = () => {
           <div className="header-r-user">
             <Dropdown menu={{ items }} placement="bottom" arrow>
               <div className="pic">
-                <img
-                  src={`https://avatars.githubusercontent.com/u/137391282?v=4`}
-                />
-                <span className="userName"> {userStore?.user?.name} </span>
+                <img src={user?.avatar} />
+                <span className="userName"> {user?.name} </span>
               </div>
             </Dropdown>
           </div>
