@@ -11,8 +11,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   // redux
   const dispatch = useDispatch();
-  const userStore = useSelector((state: any) => state.user);
-
+  const userStore = useSelector((state: any) => state.user); 
   // form
   const [form] = Form.useForm();
   // 登录

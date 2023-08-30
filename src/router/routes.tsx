@@ -4,7 +4,7 @@ import {RouteProps} from './route'
 const routes: RouteProps[] = [
   {
     path: "/index",
-    component: lazy(() => import('@/pages/user/index')),
+    component: lazy(() => import('@/pages/dashboard/index')),
     isMenu: false,
     requiresAuth: true,
     children:[

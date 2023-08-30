@@ -1,4 +1,4 @@
-import { Button, Dropdown, Layout, Menu, theme } from "antd";
+import { Button, Dropdown, Layout, Menu, Modal, message, theme } from "antd";
 import React, { useEffect, useState } from "react";
 import {
   MenuFoldOutlined,
@@ -7,7 +7,8 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 import "./index.less";
 
 const { Header, Content, Sider } = Layout;
@@ -17,7 +18,10 @@ const Apps: React.FC<{Components:any}> = ({Components}) => {
   // redux 存储的用户信息
   const userStore = useSelector((state: any) => state);
   const { user, menuList } = userStore?.user;
-
+  // dispatch
+  const dispatch = useDispatch();
+  // reactRouter
+  const navigator = useNavigate();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -32,14 +36,39 @@ const Apps: React.FC<{Components:any}> = ({Components}) => {
 
   // 菜单列表
   const [menuRoute, setMenuRoute] = useState<MenuItems[]>([]);
-  
+  // Modal
+  const { confirm } = Modal;
+
   // 首次加载处理
   useEffect(() => {
     setMenuRoute(menuList);
   }, []);
+
+  // 退出登录
+  const exit = ()=>{
+    confirm({
+      title: '真的要退出登录吗?',
+      content: '退出就退出吧，我无所谓的！',
+      onOk() {
+        message.success("用户退出登录")
+        dispatch.user.fetchLoginOut()
+        navigator('/')
+      },
+      onCancel() {
+        message.info("用户取消退出登录")
+      },
+    });
+    
+  }
   
   // 用户下拉菜单
-  const items = [{ label: "退出登录", key: "2" }];
+  const items = [{ label: "退出登录", key: "1", onClick:()=>exit()}];
+
+  // 跳转页面
+  const menuTo  = (menu:any)=>{
+    const path = menu.props?.path
+    navigator(path)
+  }
 
   return (
     <Layout className="index-Layout">
@@ -50,8 +79,9 @@ const Apps: React.FC<{Components:any}> = ({Components}) => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["1"]} 
           items={menuRoute}
+          onClick={({ item, key, keyPath, domEvent })=> menuTo(item)}
         />
       </Sider>
       <Layout>
@@ -70,7 +100,7 @@ const Apps: React.FC<{Components:any}> = ({Components}) => {
             }}
           />
           <div className="header-r-user">
-            <Dropdown menu={{ items }} placement="bottom" arrow>
+            <Dropdown menu={{ items }} placement="bottom"  arrow>
               <div className="pic">
                 <img src={user?.avatar} />
                 <span className="userName"> {user?.name} </span>
