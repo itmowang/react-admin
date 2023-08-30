@@ -1,10 +1,8 @@
 import React, { Suspense } from "react";
 import routes from "./routes";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { HashRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { checkAuth } from "./auth";
 import { RouteProps } from './route'
-
-
 
 const RouterView: React.FC = () => {
   return (

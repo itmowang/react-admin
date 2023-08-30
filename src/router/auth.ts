@@ -11,7 +11,7 @@ export const checkAuth = (route: RouteProps): boolean => {
     return true;
   } else {
     // 否则就进行路由权限匹配
-    return menuAll.some(
+    return menuAll?.some(
       (item: { path: string | undefined }) => item.path == route.path
     );
   }
