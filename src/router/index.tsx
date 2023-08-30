@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, Routes, Navigate } from "react-router-dom"
 import { checkAuth } from "./auth";
 import { RouteProps } from './route';
 import PreView from '@/components/preView';
-import { useSelector, useDispatch } from "react-redux";;
+import { useSelector } from "react-redux";;
 
 
 const RouterView: React.FC = () => {
