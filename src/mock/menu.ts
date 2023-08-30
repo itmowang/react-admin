@@ -4,13 +4,13 @@ const menuData = [
   {
     id: 1,
     name: "仪表盘",
-    path: "/dashboard",
+    path: "/index",
     parentId: null,
   },
   {
     id: 2,
     name: "用户管理",
-    path: "/user",
+    path: "",
     parentId: null,
   },
   {
@@ -22,7 +22,7 @@ const menuData = [
   {
     id: 4,
     name: "用户列表",
-    path: "/user/list",
+    path: "/index/user",
     parentId: 2,
   },
   {

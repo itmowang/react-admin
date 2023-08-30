@@ -1,23 +1,29 @@
 import React, { Suspense } from "react";
-import routes from "./routes";
+import routes,{flattenRoutes} from "./routes";
 import { HashRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import { checkAuth } from "./auth";
-import { RouteProps } from './route'
+import { RouteProps } from './route';
+import PreView from '@/components/preView';
+import { useSelector, useDispatch } from "react-redux";;
+
 
 const RouterView: React.FC = () => {
+  const userStore = useSelector((state: any) => state.user);
+
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
-          {routes.map((route: RouteProps, index: number) => {
+          {flattenRoutes(routes).map((route: RouteProps, index: number) => {
             // 通过后端返回path 匹配是否有当前的权限
             if (checkAuth(route)) {
+              // 
               return (
                 <Route
                   key={route.path}
                   path={route.path}
-                  element={route.component && <route.component />}
+                  element={ !userStore.isLogin?<> {route.component && <route.component />} </> : <PreView Components={route.component}/>}
                 />
               );
             } else {

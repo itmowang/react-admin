@@ -16,3 +16,4 @@ export const checkAuth = (route: RouteProps): boolean => {
     );
   }
 };
+

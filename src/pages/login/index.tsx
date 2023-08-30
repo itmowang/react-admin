@@ -33,7 +33,7 @@ const Login: React.FC = () => {
           payload: data?.userInfo,
         });
         // 跳转去仪表盘
-        navigate("/dashboard");
+        navigate("/index");
       } else {
         message.error(data?.message);
       }
@@ -43,7 +43,7 @@ const Login: React.FC = () => {
   // 如果已经登录就去仪表盘
   useEffect(() => {
     if (userStore.isLogin) {
-      navigate("/dashboard");
+      navigate("/index");
     }
   }, []);
 

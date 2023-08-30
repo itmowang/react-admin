@@ -12,7 +12,7 @@ import "./index.less";
 
 const { Header, Content, Sider } = Layout;
 
-const Apps: React.FC = () => {
+const Apps: React.FC<{Components:any}> = ({Components}) => {
   const [collapsed, setCollapsed] = useState(false);
   // redux 存储的用户信息
   const userStore = useSelector((state: any) => state);
@@ -86,7 +86,7 @@ const Apps: React.FC = () => {
             background: colorBgContainer,
           }}
         >
-          Content
+        <Components/>
         </Content>
       </Layout>
     </Layout>
