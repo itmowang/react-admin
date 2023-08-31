@@ -33,3 +33,32 @@ pnpm build
 密码:guest
 
 ```
+
+### React Admin
+
+源自于想后续去写一些小的玩意，提前给自己写一套模板，利用了空闲时间抽出来了基础部分，方便后续DIY。
+
+依赖
+
+``` bash
+  - react (react18)
+  - react-router (6x版本)
+  - redux
+  - antd
+  - axios
+  - react-query
+  - less
+  - redux-persist
+  - rematch
+  - rematch/persist 
+  - typescript
+  - mock
+  - vite
+```
+
+预览
+
+![切图1](http://img.blog.loli.wang/2023-8-29-reactexperience2/01.png)
+
+![切图2](http://img.blog.loli.wang/2023-8-29-reactexperience2/02.png)
+
