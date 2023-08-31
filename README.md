@@ -17,3 +17,19 @@ pnpm dev
 pnpm build
 
 ```
+
+## 权限测试账号
+``` bash
+# 管理员
+账户名:admin
+密码:admin
+
+# 编辑者
+账户名:editor
+密码:editor
+
+# 普通用户
+账户名:guest
+密码:guest
+
+```

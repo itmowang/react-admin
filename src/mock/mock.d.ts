@@ -8,4 +8,5 @@ export interface MenuParam{
     id:number;
     path:string;
     type?: "group";
+    role:[]
 }
