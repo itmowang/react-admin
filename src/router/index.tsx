@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import routes, { flattenRoutes } from "./routes";
 import {
   HashRouter as Router,
@@ -14,13 +14,15 @@ import { useSelector } from "react-redux";
 const RouterView: React.FC = () => {
   const error401 = lazy(() => import("@/components/layout/401"));
   const userStore = useSelector((state: any) => state.user);
+  const menuAll = userStore?.menuAll;
+  const user = userStore?.user;
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           {flattenRoutes(routes).map((route: RouteProps, index: number) => {
-            if (checkAuth(route) === "200") {
+            if (checkAuth(route, menuAll, user) === "200") {
               return (
                 <Route
                   key={route.path}
@@ -34,15 +36,13 @@ const RouterView: React.FC = () => {
                   }
                 />
               );
-            } else if (checkAuth(route) === "401") {
-              console.log(checkAuth(route));
-
+            } else if (checkAuth(route, menuAll, user) === "401") {
               return (
                 <Route
                   key={route.path}
                   path={route.path}
                   element={<PreView Components={error401} />}
-                  />
+                />
               );
             } else {
               <Route

@@ -11,25 +11,26 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   // redux
   const dispatch = useDispatch();
-  const userStore = useSelector((state: any) => state.user); 
+  const userStore = useSelector((state: any) => state.user);
+  
   // form
   const [form] = Form.useForm();
   // 登录
   const { mutate, isLoading: loginLoading } = useMutation(login, {
     onSuccess: (data: any) => {
       if (data?.code === 200) {
-        message.success("登录成功");
-        // 保存token
-        dispatch({
-          type: "user/setToken",
-          payload: data?.token,
-        });
         // 获取菜单
         dispatch.user.fetchMenu();
         // 保存用户信息
         dispatch({
           type: "user/setUser",
           payload: data?.userInfo,
+        });
+        message.success("登录成功");
+        // 保存token
+        dispatch({
+          type: "user/setToken",
+          payload: data?.token,
         });
         // 跳转去仪表盘
         navigate("/index");
@@ -41,7 +42,7 @@ const Login: React.FC = () => {
 
   // 如果已经登录就去仪表盘
   useEffect(() => {
-    if (userStore.isLogin) {
+    if (userStore?.isLogin) {
       navigate("/index");
     }
   }, []);

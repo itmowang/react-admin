@@ -18,6 +18,8 @@ const Apps: React.FC<{Components:any}> = ({Components}) => {
   // redux 存储的用户信息
   const userStore = useSelector((state: any) => state);
   const { user, menuList } = userStore?.user;
+  console.log(menuList);
+  
   // dispatch
   const dispatch = useDispatch();
   // reactRouter
@@ -35,14 +37,14 @@ const Apps: React.FC<{Components:any}> = ({Components}) => {
   }
 
   // 菜单列表
-  const [menuRoute, setMenuRoute] = useState<MenuItems[]>([]);
+  // const [menuRoute, setMenuRoute] = useState<MenuItems[]>([]);
   // Modal
   const { confirm } = Modal;
 
   // 首次加载处理
-  useEffect(() => {
-    setMenuRoute(menuList);
-  }, []);
+  // useEffect(() => {
+  //   setMenuRoute(menuList);
+  // }, []);
 
   // 退出登录
   const exit = ()=>{
@@ -80,7 +82,7 @@ const Apps: React.FC<{Components:any}> = ({Components}) => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["1"]} 
-          items={menuRoute}
+          items={menuList}
           onClick={({ item, key, keyPath, domEvent })=> menuTo(item)}
         />
       </Sider>
